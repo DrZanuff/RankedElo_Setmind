@@ -1,0 +1,31 @@
+[gd_scene format=2]
+
+[node name="Reference" type="TextEdit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -557.0
+text = "#func _input(event: InputEvent) -> void:
+#	if event.is_action_pressed(\"ui_select\"):
+#		var img = $Control/Viewport.get_texture().get_data()
+#		img.save_png(\"res://img.png\")
+		
+#┠╴SS
+#    ┠╴Control
+#    ┃  ┖╴Viewport
+#    ┃     ┖╴Camera2D
+#    ┃        ┠╴icon
+#    ┃        ┠╴icon2
+#    ┃        ┠╴icon3
+#    ┃        ┖╴icon4
+#    ┖╴Sprite
+"
+syntax_highlighting = true
+show_line_numbers = true
+draw_tabs = true
+draw_spaces = true
+breakpoint_gutter = true
+fold_gutter = true
+highlight_all_occurrences = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
