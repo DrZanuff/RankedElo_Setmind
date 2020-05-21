@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Lobo.png-5f647ebcbfc9a80ccb4c60b928eb64bb.stex"
+path="res://.import/Wolf.png-715d97c00a073acdb4c68c515bd53cd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Titles/Lobo.png"
-dest_files=[ "res://.import/Lobo.png-5f647ebcbfc9a80ccb4c60b928eb64bb.stex" ]
+source_file="res://Ranks/Titles/Wolf.png"
+dest_files=[ "res://.import/Wolf.png-715d97c00a073acdb4c68c515bd53cd8.stex" ]
 
 [params]
 

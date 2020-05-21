@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Wolf.png-c51a9832be1d62c935ed6b882f7ab938.stex"
+path="res://.import/Wolf.png-9967054727b2857a670090b1aeb3acad.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Badges/Wolf.png"
-dest_files=[ "res://.import/Wolf.png-c51a9832be1d62c935ed6b882f7ab938.stex" ]
+source_file="res://Ranks/BGs/Wolf.png"
+dest_files=[ "res://.import/Wolf.png-9967054727b2857a670090b1aeb3acad.stex" ]
 
 [params]
 
