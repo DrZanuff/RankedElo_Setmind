@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Ranks/Badges/Wolf.png" type="Texture" id=1]
+[ext_resource path="res://Ranks/Badges/Eagle.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Base/BaseScene.gd" type="Script" id=2]
-[ext_resource path="res://Ranks/Titles/Wolf.png" type="Texture" id=3]
+[ext_resource path="res://Ranks/BGs/Eagle.png" type="Texture" id=3]
 [ext_resource path="res://Fonts/Aldrich/Aldrich-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Ranks/BGs/Wolf.png" type="Texture" id=5]
+[ext_resource path="res://Ranks/Titles/Eagle.png" type="Texture" id=5]
+[ext_resource path="res://Ranks/Elos/Eagle.tres" type="Resource" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -74,14 +75,14 @@ tracks/0/keys = {
 anchor_mode = 0
 current = true
 script = ExtResource( 2 )
-colors = [ Color( 0.12549, 0.12549, 0.243137, 1 ), Color( 0, 0, 0, 1 ) ]
+elo = ExtResource( 6 )
 
 [node name="Structure" type="Node" parent="."]
 
 [node name="BG" type="TextureRect" parent="Structure"]
 margin_right = 1280.0
 margin_bottom = 2000.0
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -137,7 +138,7 @@ stretch_mode = 4
 margin_top = 246.0
 margin_right = 1240.0
 margin_bottom = 417.0
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 stretch_mode = 6
 
 [node name="Data" type="MarginContainer" parent="Structure/VBoxContainer"]
