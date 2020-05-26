@@ -14,3 +14,4 @@ func set_rank(e):
 		badge.texture = e.badge
 		title.texture = e.title
 		bg.texture = e.bg
+
