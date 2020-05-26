@@ -24,5 +24,19 @@ __meta__ = {
 }
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="FileDialog" type="FileDialog" parent="."]
+visible = true
+margin_right = 705.0
+margin_bottom = 335.0
+window_title = "Open a Directory"
+mode = 2
+access = 2
+current_dir = "/home/drzanuff/Git/RankedElo_Setmind"
+current_path = "/home/drzanuff/Git/RankedElo_Setmind/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]

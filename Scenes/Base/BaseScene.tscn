@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Ranks/Badges/Dragon.png" type="Texture" id=1]
+[ext_resource path="res://Ranks/Titles/Wolf.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Base/BaseScene.gd" type="Script" id=2]
-[ext_resource path="res://Ranks/BGs/Dragon.png" type="Texture" id=3]
+[ext_resource path="res://Ranks/Elos/Wolf.tres" type="Resource" id=3]
 [ext_resource path="res://Fonts/Aldrich/Aldrich-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Ranks/Elos/Dragon.tres" type="Resource" id=5]
-[ext_resource path="res://Ranks/Titles/Dragon.png" type="Texture" id=6]
+[ext_resource path="res://Ranks/BGs/Wolf.png" type="Texture" id=5]
+[ext_resource path="res://Ranks/Badges/Wolf.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -35,11 +35,19 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 corner_detail = 20
 
-[sub_resource type="DynamicFont" id=3]
-size = 54
+[sub_resource type="DynamicFont" id=6]
+size = 32
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 4 )
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends VBoxContainer
+
+func _process(delta: float) -> void:
+	if rect_size.y > 1356:
+		rect_size.y = 1356
+"
 
 [sub_resource type="Animation" id=4]
 tracks/0/type = "value"
@@ -75,14 +83,14 @@ tracks/0/keys = {
 anchor_mode = 0
 current = true
 script = ExtResource( 2 )
-elo = ExtResource( 5 )
+elo = ExtResource( 3 )
 
 [node name="Structure" type="Node" parent="."]
 
 [node name="BG" type="TextureRect" parent="Structure"]
 margin_right = 1280.0
 margin_bottom = 2000.0
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -131,20 +139,20 @@ custom_styles/separator = SubResource( 1 )
 [node name="Badge" type="TextureRect" parent="Structure/VBoxContainer/Logo/VBoxContainer/MarginContainer"]
 margin_right = 1240.0
 margin_bottom = 291.0
-texture = ExtResource( 1 )
+texture = ExtResource( 6 )
 stretch_mode = 4
 
 [node name="Title" type="TextureRect" parent="Structure/VBoxContainer/Logo/VBoxContainer"]
 margin_top = 246.0
 margin_right = 1240.0
 margin_bottom = 417.0
-texture = ExtResource( 6 )
+texture = ExtResource( 1 )
 stretch_mode = 6
 
 [node name="Data" type="MarginContainer" parent="Structure/VBoxContainer"]
 margin_top = 450.0
 margin_right = 1280.0
-margin_bottom = 1887.0
+margin_bottom = 1921.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
@@ -154,8 +162,9 @@ custom_constants/margin_left = 60
 [node name="Body" type="VBoxContainer" parent="Structure/VBoxContainer/Data"]
 margin_left = 60.0
 margin_right = 1220.0
-margin_bottom = 1437.0
+margin_bottom = 1471.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 14
 
 [node name="Line" type="HSeparator" parent="Structure/VBoxContainer/Data/Body"]
@@ -168,60 +177,162 @@ custom_styles/separator = SubResource( 2 )
 [node name="Header" type="HBoxContainer" parent="Structure/VBoxContainer/Data/Body"]
 margin_top = 18.0
 margin_right = 1160.0
-margin_bottom = 69.0
+margin_bottom = 49.0
 
 [node name="No" type="Label" parent="Structure/VBoxContainer/Data/Body/Header"]
 margin_right = 192.0
-margin_bottom = 51.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 text = "#"
 valign = 1
 
 [node name="Name" type="Label" parent="Structure/VBoxContainer/Data/Body/Header"]
 margin_left = 196.0
-margin_right = 1160.0
-margin_bottom = 51.0
+margin_right = 964.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+size_flags_stretch_ratio = 0.8
+custom_fonts/font = SubResource( 6 )
 text = "Nome"
+align = 1
+valign = 1
+
+[node name="Pontos" type="Label" parent="Structure/VBoxContainer/Data/Body/Header"]
+margin_left = 968.0
+margin_right = 1160.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+custom_fonts/font = SubResource( 6 )
+text = "Pontos"
+align = 2
 valign = 1
 
 [node name="Line2" type="HSeparator" parent="Structure/VBoxContainer/Data/Body"]
-margin_top = 83.0
+margin_top = 63.0
 margin_right = 1160.0
-margin_bottom = 87.0
+margin_bottom = 67.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 custom_styles/separator = SubResource( 2 )
 
 [node name="Names" type="VBoxContainer" parent="Structure/VBoxContainer/Data/Body"]
-margin_top = 101.0
+margin_top = 81.0
 margin_right = 1160.0
-margin_bottom = 1437.0
+margin_bottom = 1471.0
+rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = SubResource( 7 )
 
 [node name="Footer" type="MarginContainer" parent="Structure/VBoxContainer"]
-margin_top = 1891.0
+margin_top = 1925.0
 margin_right = 1280.0
 margin_bottom = 2000.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.3
+size_flags_stretch_ratio = 0.2
 custom_constants/margin_right = 50
 custom_constants/margin_left = 50
 
 [node name="Line3" type="HSeparator" parent="Structure/VBoxContainer/Footer"]
 margin_left = 50.0
 margin_right = 1230.0
-margin_bottom = 109.0
+margin_bottom = 75.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 custom_styles/separator = SubResource( 2 )
+
+[node name="Data" type="MarginContainer" parent="Structure"]
+anchor_top = 0.624
+anchor_right = 1.0
+anchor_bottom = 2.717
+margin_top = -0.279999
+margin_bottom = -0.240234
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+custom_constants/margin_right = 60
+custom_constants/margin_left = 60
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Body" type="VBoxContainer" parent="Structure/Data"]
+margin_left = 60.0
+margin_right = 1220.0
+margin_bottom = 1507.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 14
+
+[node name="Line" type="HSeparator" parent="Structure/Data/Body"]
+margin_right = 1160.0
+margin_bottom = 4.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+custom_styles/separator = SubResource( 2 )
+
+[node name="Header" type="HBoxContainer" parent="Structure/Data/Body"]
+margin_top = 18.0
+margin_right = 1160.0
+margin_bottom = 49.0
+
+[node name="No" type="Label" parent="Structure/Data/Body/Header"]
+margin_right = 192.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+custom_fonts/font = SubResource( 6 )
+text = "#"
+valign = 1
+
+[node name="Name" type="Label" parent="Structure/Data/Body/Header"]
+margin_left = 196.0
+margin_right = 964.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+custom_fonts/font = SubResource( 6 )
+text = "Nome"
+align = 1
+valign = 1
+
+[node name="Pontos" type="Label" parent="Structure/Data/Body/Header"]
+margin_left = 968.0
+margin_right = 1160.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+custom_fonts/font = SubResource( 6 )
+text = "Pontos"
+align = 2
+valign = 1
+
+[node name="Line2" type="HSeparator" parent="Structure/Data/Body"]
+margin_top = 63.0
+margin_right = 1160.0
+margin_bottom = 67.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+custom_styles/separator = SubResource( 2 )
+
+[node name="Names" type="VBoxContainer" parent="Structure/Data/Body"]
+margin_top = 81.0
+margin_right = 1160.0
+margin_bottom = 1507.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = SubResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"

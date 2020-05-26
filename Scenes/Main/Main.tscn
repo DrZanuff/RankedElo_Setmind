@@ -1,14 +1,63 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Base/BaseScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Main/Main.gd" type="Script" id=2]
 
+[sub_resource type="Animation" id=3]
+resource_name = "BlackOut"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Curtain:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Curtain:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "swap"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Curtain:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
+colors = [ Color( 1, 1, 1, 1 ), Color( 0.619608, 0.619608, 0.619608, 1 ) ]
 
 [node name="Control" type="ViewportContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = 1280.0
 mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -16,7 +65,6 @@ __meta__ = {
 
 [node name="Viewport" type="Viewport" parent="Control"]
 size = Vector2( 1280, 2000 )
-size_override_stretch = true
 handle_input_locally = false
 msaa = 3
 usage = 0
@@ -25,8 +73,87 @@ gui_disable_input = true
 
 [node name="BaseScene" parent="Control/Viewport" instance=ExtResource( 1 )]
 
+[node name="Options" type="MarginContainer" parent="."]
+margin_left = 46.0
+margin_top = 42.0
+margin_right = 132.0
+margin_bottom = 238.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Body" type="VBoxContainer" parent="Options"]
+margin_right = 86.0
+margin_bottom = 196.0
+
+[node name="Elos" type="VBoxContainer" parent="Options/Body"]
+margin_right = 86.0
+margin_bottom = 116.0
+
+[node name="ButtonWolf" type="Button" parent="Options/Body/Elos"]
+margin_right = 86.0
+margin_bottom = 20.0
+text = "Wolf"
+
+[node name="ButtonEagle" type="Button" parent="Options/Body/Elos"]
+margin_top = 24.0
+margin_right = 86.0
+margin_bottom = 44.0
+text = "Eagle"
+
+[node name="ButtonBear" type="Button" parent="Options/Body/Elos"]
+margin_top = 48.0
+margin_right = 86.0
+margin_bottom = 68.0
+text = "Bear"
+
+[node name="ButtonLion" type="Button" parent="Options/Body/Elos"]
+margin_top = 72.0
+margin_right = 86.0
+margin_bottom = 92.0
+text = "Lion"
+
+[node name="ButtonDragon" type="Button" parent="Options/Body/Elos"]
+margin_top = 96.0
+margin_right = 86.0
+margin_bottom = 116.0
+text = "Dragon"
+
+[node name="HSeparator" type="HSeparator" parent="Options/Body"]
+margin_top = 120.0
+margin_right = 86.0
+margin_bottom = 124.0
+
+[node name="Save" type="VBoxContainer" parent="Options/Body"]
+margin_top = 128.0
+margin_right = 86.0
+margin_bottom = 172.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonSave" type="Button" parent="Options/Body/Save"]
+margin_right = 86.0
+margin_bottom = 20.0
+text = "Save"
+
+[node name="ButtonSaveAll" type="Button" parent="Options/Body/Save"]
+visible = false
+margin_top = 24.0
+margin_right = 86.0
+margin_bottom = 44.0
+disabled = true
+text = "Save All"
+
+[node name="ButtonUpdate" type="Button" parent="Options/Body/Save"]
+margin_top = 24.0
+margin_right = 86.0
+margin_bottom = 44.0
+text = "Update"
+
+[node name="SwapTimer" type="Timer" parent="Options"]
+
 [node name="FileDialog" type="FileDialog" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -35,6 +162,10 @@ margin_left = -386.0
 margin_top = -253.5
 margin_right = 386.0
 margin_bottom = 253.5
+window_title = "Salvar imagem do Elo atual"
+resizable = true
+dialog_hide_on_ok = true
+dialog_autowrap = true
 access = 2
 filters = PoolStringArray( ".png ; Imagem" )
 show_hidden_files = true
@@ -43,4 +174,50 @@ current_path = "/home/drzanuff/Git/RankedElo_Setmind/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FileDialogMult" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -386.0
+margin_top = -253.5
+margin_right = 386.0
+margin_bottom = 253.5
+window_title = "Open a Directory"
+resizable = true
+dialog_hide_on_ok = true
+dialog_autowrap = true
+mode = 2
+access = 2
+show_hidden_files = true
+current_dir = "/home/drzanuff/Git/RankedElo_Setmind"
+current_path = "/home/drzanuff/Git/RankedElo_Setmind/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Curtain" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "FadeOut"
+anims/BlackOut = SubResource( 3 )
+anims/FadeOut = SubResource( 1 )
+anims/swap = SubResource( 2 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[connection signal="pressed" from="Options/Body/Save/ButtonSave" to="." method="_on_ButtonSave_pressed"]
+[connection signal="pressed" from="Options/Body/Save/ButtonSaveAll" to="." method="_on_ButtonSaveAll_pressed"]
+[connection signal="pressed" from="Options/Body/Save/ButtonUpdate" to="." method="_on_ButtonUpdate_pressed"]
 [connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]
+[connection signal="confirmed" from="FileDialogMult" to="." method="_on_FileDialogMult_confirmed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
