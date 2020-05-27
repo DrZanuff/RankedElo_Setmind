@@ -35,13 +35,13 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 corner_detail = 20
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=4]
 script/source = "extends VBoxContainer
 
 func _process(delta: float) -> void:
@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 		rect_size.y = 1356
 "
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
@@ -63,7 +63,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 30.0
 loop = true
 tracks/0/type = "value"
@@ -104,55 +104,73 @@ __meta__ = {
 }
 
 [node name="ReferenceRect" type="ReferenceRect" parent="Structure/VBoxContainer"]
+visible = false
 margin_right = 1280.0
-margin_bottom = 25.0
+margin_bottom = 315.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.07
 
 [node name="Logo" type="MarginContainer" parent="Structure/VBoxContainer"]
-margin_top = 29.0
 margin_right = 1280.0
-margin_bottom = 446.0
+margin_bottom = 390.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.85
 custom_constants/margin_right = 20
 custom_constants/margin_left = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Structure/VBoxContainer/Logo"]
 margin_left = 20.0
 margin_right = 1260.0
-margin_bottom = 417.0
-custom_constants/separation = -45
+margin_bottom = 390.0
+size_flags_vertical = 3
+custom_constants/separation = -60
 
 [node name="MarginContainer" type="MarginContainer" parent="Structure/VBoxContainer/Logo/VBoxContainer"]
 margin_right = 1240.0
-margin_bottom = 291.0
+margin_bottom = 300.0
+size_flags_vertical = 3
 
 [node name="Line" type="HSeparator" parent="Structure/VBoxContainer/Logo/VBoxContainer/MarginContainer"]
 margin_right = 1240.0
-margin_bottom = 291.0
+margin_bottom = 300.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 custom_styles/separator = SubResource( 1 )
 
 [node name="Badge" type="TextureRect" parent="Structure/VBoxContainer/Logo/VBoxContainer/MarginContainer"]
 margin_right = 1240.0
-margin_bottom = 291.0
+margin_bottom = 300.0
+size_flags_vertical = 3
 texture = ExtResource( 6 )
-stretch_mode = 4
-
-[node name="Title" type="TextureRect" parent="Structure/VBoxContainer/Logo/VBoxContainer"]
-margin_top = 246.0
-margin_right = 1240.0
-margin_bottom = 417.0
-texture = ExtResource( 1 )
+expand = true
 stretch_mode = 6
 
-[node name="Data" type="MarginContainer" parent="Structure/VBoxContainer"]
-margin_top = 450.0
+[node name="Title" type="TextureRect" parent="Structure/VBoxContainer/Logo/VBoxContainer"]
+margin_top = 240.0
+margin_right = 1240.0
+margin_bottom = 390.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="DataReference" type="ReferenceRect" parent="Structure/VBoxContainer"]
+margin_top = 394.0
 margin_right = 1280.0
-margin_bottom = 1921.0
+margin_bottom = 2000.0
+rect_min_size = Vector2( 0, 1471 )
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.5
+
+[node name="Data" type="MarginContainer" parent="Structure/VBoxContainer"]
+visible = false
+margin_top = 1643.0
+margin_right = 1280.0
+margin_bottom = 3114.0
+rect_min_size = Vector2( 0, 1471 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
@@ -185,7 +203,7 @@ margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "#"
 valign = 1
 
@@ -196,7 +214,7 @@ margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "Nome"
 align = 1
 valign = 1
@@ -208,7 +226,7 @@ margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "Pontos"
 align = 2
 valign = 1
@@ -228,12 +246,13 @@ margin_bottom = 1471.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = SubResource( 7 )
+script = SubResource( 4 )
 
 [node name="Footer" type="MarginContainer" parent="Structure/VBoxContainer"]
-margin_top = 1925.0
+visible = false
+margin_top = 1896.0
 margin_right = 1280.0
-margin_bottom = 2000.0
+margin_bottom = 3118.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
@@ -243,17 +262,16 @@ custom_constants/margin_left = 50
 [node name="Line3" type="HSeparator" parent="Structure/VBoxContainer/Footer"]
 margin_left = 50.0
 margin_right = 1230.0
-margin_bottom = 75.0
+margin_bottom = 1222.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 custom_styles/separator = SubResource( 2 )
 
 [node name="Data" type="MarginContainer" parent="Structure"]
-anchor_top = 0.624
 anchor_right = 1.0
 anchor_bottom = 2.717
-margin_top = -0.279999
-margin_bottom = -0.240234
+margin_top = 394.0
+margin_bottom = 43.7599
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
@@ -266,7 +284,7 @@ __meta__ = {
 [node name="Body" type="VBoxContainer" parent="Structure/Data"]
 margin_left = 60.0
 margin_right = 1220.0
-margin_bottom = 1507.0
+margin_bottom = 1605.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 14
@@ -289,7 +307,7 @@ margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "#"
 valign = 1
 
@@ -300,7 +318,7 @@ margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "Nome"
 align = 1
 valign = 1
@@ -312,7 +330,7 @@ margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "Pontos"
 align = 2
 valign = 1
@@ -328,13 +346,13 @@ custom_styles/separator = SubResource( 2 )
 [node name="Names" type="VBoxContainer" parent="Structure/Data/Body"]
 margin_top = 81.0
 margin_right = 1160.0
-margin_bottom = 1507.0
+margin_bottom = 1605.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = SubResource( 7 )
+script = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
-anims/Idle = SubResource( 4 )
-anims/Move = SubResource( 5 )
+anims/Idle = SubResource( 5 )
+anims/Move = SubResource( 6 )

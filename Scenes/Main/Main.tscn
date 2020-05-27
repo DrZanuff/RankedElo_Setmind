@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Base/BaseScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Main/Main.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "BlackOut"
 length = 0.3
 tracks/0/type = "value"
@@ -19,8 +19,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "FadeOut"
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Curtain:color")
 tracks/0/interp = 1
@@ -34,8 +33,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "swap"
+[sub_resource type="Animation" id=3]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Curtain:color")
@@ -209,9 +207,9 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FadeOut"
-anims/BlackOut = SubResource( 3 )
-anims/FadeOut = SubResource( 1 )
-anims/swap = SubResource( 2 )
+anims/BlackOut = SubResource( 1 )
+anims/FadeOut = SubResource( 2 )
+anims/swap = SubResource( 3 )
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="Options/Body/Save/ButtonSave" to="." method="_on_ButtonSave_pressed"]

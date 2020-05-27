@@ -10,7 +10,6 @@ export (Array,Color) var colors = [Color() , Color()]
 
 var board_heigth = 1000
 
-signal all_deleted
 
 var elo_ranks = [
 				"res://Ranks/Elos/Wolf.tres",
@@ -97,6 +96,8 @@ func disable_buttons(status):
 func _on_ButtonSave_pressed() -> void:
 	$FileDialog.show()
 	$FileDialogMult.hide()
+	$Control/Viewport/BaseScene.position.y = 0
+	
 
 func _on_ButtonSaveAll_pressed() -> void:
 	$FileDialog.hide()
@@ -111,7 +112,6 @@ func _on_ButtonUpdate_pressed() -> void:
 func _on_HTTPRequest_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray) -> void:
 	var json = body.get_string_from_utf8()
 	rank = JSON.parse(json).result
-	print(rank)
 	update_rank()
 	disable_buttons(false)
 	
@@ -134,7 +134,7 @@ func update_rank():
 			#Set Color
 			new_entry.set_color( colors[ ceil(index%2) ] ) 
 		
-		var font_size = (board_heigth / rank[current_rank].size() ) - 2
+		var font_size = (board_heigth / rank[current_rank].size() ) - 3.9
 		font_size = clamp( font_size , 5 , 54 )
 		printt(
 			board_heigth,
@@ -150,9 +150,6 @@ func delete_all():
 	yield(get_tree(), "idle_frame")
 	for e in name_list.get_children():
 		e.queue_free()
-	
-	print( name_list.get_child_count() )
-	emit_signal("all_deleted")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_select"):
