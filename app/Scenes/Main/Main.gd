@@ -36,7 +36,6 @@ func elo_change(e,text):
 		$Control/Viewport/BaseScene.set_rank_images( load(e) )
 		current_rank = text
 	else:
-		print("Crash")
 		disable_buttons(true)
 		$Control/Viewport/BaseScene.set_rank_images( load(e) )
 		current_rank = text
@@ -52,21 +51,23 @@ func _on_FileDialog_confirmed() -> void:
 
 func _on_FileDialogMult_confirmed() -> void:
 	var temp_rank = elo_ranks
-	temp_rank.pop_front()
+#	temp_rank.pop_front()
 	
 	$AnimationPlayer.play("BlackOut")
 	
-	yield(get_tree().create_timer(0.5),"timeout")
-	$Control/Viewport/BaseScene.set_rank_images(load(elo_ranks[0]))
-	var img_temp = $Control/Viewport.get_texture().get_data()
-	img_temp.flip_y()
-	img_temp.save_png( str( $FileDialogMult.current_dir + "/" + "Wolf" + ".png" )  )
-	yield(get_tree().create_timer(0.5),"timeout")
+	yield(get_tree().create_timer(0.3),"timeout")
+#	$Control/Viewport/BaseScene.set_rank_images(load(elo_ranks[0]))
+#	yield(get_tree() , "idle_frame" )
+#	var img_temp = $Control/Viewport.get_texture().get_data()
+#	img_temp.flip_y()
+#	img_temp.save_png( str( $FileDialogMult.current_dir + "/" + "Wolf" + ".png" )  )
+#	yield(get_tree().create_timer(0.5),"timeout")
 	
 	for e in temp_rank:
 		path = $FileDialogMult.current_dir
 		
 		$Control/Viewport/BaseScene.set_rank_images( load(e) )
+		yield(get_tree() , "idle_frame" )
 		var img = $Control/Viewport.get_texture().get_data()
 		img.flip_y()
 		
@@ -102,6 +103,7 @@ func _on_ButtonSave_pressed() -> void:
 func _on_ButtonSaveAll_pressed() -> void:
 	$FileDialog.hide()
 	$FileDialogMult.show()
+	$Control/Viewport/BaseScene.position.y = 0
 
 
 func _on_ButtonUpdate_pressed() -> void:
@@ -136,11 +138,7 @@ func update_rank():
 		
 		var font_size = (board_heigth / rank[current_rank].size() ) - 3.9
 		font_size = clamp( font_size , 5 , 54 )
-		printt(
-			board_heigth,
-			font_size,
-			rank[current_rank].size()
-			)
+		
 		name_list.get_child(0).update_font(font_size)
 	
 	$AnimationPlayer.play("FadeOut")
