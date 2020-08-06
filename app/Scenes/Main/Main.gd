@@ -10,7 +10,7 @@ export (Array,Color) var colors = [Color() , Color()]
 
 var board_heigth = 1000
 
-
+#
 var elo_ranks = [
 				"res://Ranks/Elos/Wolf.tres",
 				"res://Ranks/Elos/Eagle.tres",
